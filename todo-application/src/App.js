@@ -6,7 +6,8 @@ function App() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [status, seStatus] = useState(false);
+  // const [status, seStatus] = useState(false);
+  let status = false;
   const [list, setList] = useState([]);
   let n = 1;
   const api = `https://json-todo-server.herokuapp.com/todo`;
