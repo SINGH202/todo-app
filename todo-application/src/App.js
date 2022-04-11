@@ -10,7 +10,7 @@ function App() {
   let status = false;
   const [list, setList] = useState([]);
   let n = 1;
-  const api = `https://json-todo-server.herokuapp.com/todo`;
+  const api = `https://bookstroe-backend-server.herokuapp.com/todo`;
 
   const getData = () => {
     fetch(`${api}`)
