@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+
 const axios = require("axios");
 
-function App() {
+function Todo() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -10,7 +10,7 @@ function App() {
   let status = false;
   const [list, setList] = useState([]);
   let n = 1;
-  const api = `https://bookstroe-backend-server.herokuapp.com/todo`;
+  const api = `https://e-commerce-backend-20lo.onrender.com/todo`;
 
   const getData = () => {
     fetch(`${api}`)
@@ -33,7 +33,7 @@ function App() {
         url: api,
         data,
       })
-        .then((res) => {
+        .then((res: any) => {
           // console.log(res.data)
         })
         .then(getData);
@@ -42,7 +42,7 @@ function App() {
     }
   };
 
-  const removeComplete = (e) => {
+  const removeComplete = (e: any) => {
     if (e.statue == true) {
       axios.delete(api + "/" + e.id);
     }
@@ -56,7 +56,7 @@ function App() {
     getData();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setTitle(e.target.value);
   };
 
@@ -87,8 +87,7 @@ function App() {
           onClick={
             postData
             // console.log(title, date, time, status)
-          }
-        >
+          }>
           Add
         </button>
 
@@ -115,7 +114,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {list.map((e) => {
+            {list.map((e: any) => {
               return (
                 <tr key={e.id}>
                   <td>{n++}</td>
@@ -130,10 +129,9 @@ function App() {
                           .patch(api + "/" + e.id, {
                             statue: !e.statue,
                           })
-                          .catch((error) => console.log(error))
+                          .catch((error: any) => console.log(error))
                           .then(getData);
-                      }}
-                    >
+                      }}>
                       Change
                     </button>
                   </td>
@@ -141,12 +139,10 @@ function App() {
                     <button
                       onClick={() => {
                         axios.delete(api + "/" + e.id).then(getData);
-                      }}
-                    >
+                      }}>
                       Delete
                     </button>
                   </td>
-                  {/* <td>{e.gamerating}</td> */}
                 </tr>
               );
             })}
@@ -157,4 +153,4 @@ function App() {
   );
 }
 
-export default App;
+export default Todo;
