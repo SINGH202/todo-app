@@ -10,7 +10,7 @@ function Todo() {
   let status = false;
   const [list, setList] = useState([]);
   let n = 1;
-  const api = `https://e-commerce-backend-20lo.onrender.com/todo`;
+  const api = `https://e-commerce-backend-20lo.onrender.com/api/todo`;
 
   const getData = () => {
     fetch(`${api}`)
@@ -43,8 +43,8 @@ function Todo() {
   };
 
   const removeComplete = (e: any) => {
-    if (e.statue == true) {
-      axios.delete(api + "/" + e.id);
+    if (e.status == true) {
+      axios.delete(api + "/" + e._id);
     }
   };
 
@@ -116,21 +116,25 @@ function Todo() {
           <tbody>
             {list.map((e: any) => {
               return (
-                <tr key={e.id}>
+                <tr key={e._id}>
                   <td>{n++}</td>
                   <td>{e.title}</td>
                   <td>{e.time}</td>
                   <td>{e.date}</td>
-                  <td>{e.statue ? "Complete" : "Incomplete"}</td>
+                  <td>{e.status ? "Complete" : "Incomplete"}</td>
                   <td>
                     <button
                       onClick={() => {
-                        axios
-                          .patch(api + "/" + e.id, {
-                            statue: !e.statue,
-                          })
-                          .catch((error: any) => console.log(error))
-                          .then(getData);
+                        try {
+                          axios
+                            .put(api + "/" + e._id, {
+                              status: !e.status,
+                            })
+                            .catch((error: any) => console.log(error))
+                            .then(getData);
+                        } catch (error) {
+                          console.log(error);
+                        }
                       }}>
                       Change
                     </button>
@@ -138,7 +142,11 @@ function Todo() {
                   <td>
                     <button
                       onClick={() => {
-                        axios.delete(api + "/" + e.id).then(getData);
+                        try {
+                          axios.delete(api + "/" + e._id).then(getData);
+                        } catch (error) {
+                          console.log(error);
+                        }
                       }}>
                       Delete
                     </button>
