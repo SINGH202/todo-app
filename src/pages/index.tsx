@@ -1,14 +1,20 @@
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import Todo from "@/components/Todo";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { PopupEncloser } from "@/components/PopupEncloser";
 import { AddTodoPopup } from "@/components/AddTodoPopup";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const inter = Roboto({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
 export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState([]);
 
   const api = `https://e-commerce-backend-20lo.onrender.com/api/todo`;
@@ -18,6 +24,11 @@ export default function Home() {
       .then((d) => d.json())
       .then((res) => {
         setList(res);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
       });
   };
 
@@ -37,13 +48,14 @@ export default function Home() {
   };
   useEffect(() => {
     getData();
+    setIsLoading(true);
   }, []);
   return (
     <main
       className={`flex min-h-screen flex-col px-5 lg:px-10 items-center ${inter.className}`}>
-      <div className="flex justify-between items-center w-full p-4">
+      <div className="flex justify-between gap-2 items-center w-full py-4">
         <span className="text-xl font-serif">Todo App</span>
-        <div className="flex gap-3 items-center">
+        <div className="flex flex-wrap justify-end gap-3 items-center">
           <button
             className="rounded-lg bg-[#f0ad4e]"
             onClick={() => {
@@ -56,7 +68,20 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <Todo list={list} />
+      {isLoading ? (
+        <Player
+          autoplay
+          loop
+          src={"./assets/animation_lk6lewjs.json"}
+          style={{ height: "300px", width: "300px" }}>
+          <Controls
+            visible={false}
+            buttons={["play", "repeat", "frame", "debug"]}
+          />
+        </Player>
+      ) : (
+        <Todo list={list} refetch={getData} />
+      )}
       <PopupEncloser
         show={isPopupOpen}
         close={() => {
