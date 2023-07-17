@@ -5,6 +5,8 @@ import axios from "axios";
 import { PopupEncloser } from "@/components/PopupEncloser";
 import { AddTodoPopup } from "@/components/AddTodoPopup";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { TextButton } from "@/components/TextButton";
+import { TextButtonStatus } from "../../types";
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -56,16 +58,22 @@ export default function Home() {
       <div className="flex justify-between gap-2 items-center w-full py-4">
         <span className="text-xl font-serif">Todo App</span>
         <div className="flex flex-wrap justify-end gap-3 items-center">
-          <button
-            className="rounded-lg bg-[#f0ad4e]"
-            onClick={() => {
-              setIsPopupOpen(true);
-            }}>
-            Add new task
-          </button>
-          <button onClick={deleteAll} className="rounded-lg bg-[#b73c33]">
-            Delete all
-          </button>
+          <div>
+            <TextButton
+              label={"Add task"}
+              status={TextButtonStatus.PRIMARY}
+              action={() => {
+                setIsPopupOpen(true);
+              }}
+            />
+          </div>
+          <div>
+            <TextButton
+              label={"Delete complete"}
+              status={TextButtonStatus.SECONDARY}
+              action={deleteAll}
+            />
+          </div>
         </div>
       </div>
       {isLoading ? (
