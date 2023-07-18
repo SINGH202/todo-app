@@ -35,7 +35,7 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
   return (
     <div className="flex flex-col items-center p-10 gap-5 add-todo-popup text-black">
       <input
-        className="p-1.5 rounded-lg px-2 w-full"
+        className="p-1.5 text-black border border-gray-400 rounded-lg px-2 w-full"
         placeholder="Title"
         type="text"
         name="title"
@@ -44,7 +44,7 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
       />
 
       <input
-        className="p-1.5 rounded-lg px-2 w-full"
+        className="p-1.5 text-black border border-gray-400 rounded-lg px-2 w-full"
         type="date"
         name="date"
         id="date"
@@ -53,7 +53,7 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
         }}
       />
       <input
-        className="p-1.5 rounded-lg px-2 w-full"
+        className="p-1.5 text-black border border-gray-400 rounded-lg px-2 w-full"
         type="time"
         name="time"
         id="time"

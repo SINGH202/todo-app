@@ -45,7 +45,7 @@ function Todo({ list, refetch }: TodoTableProps) {
                         if (e.status) return;
                         try {
                           axios
-                            .put(api + "/" + e._id, {
+                            .put(`${api}/${e?._id}`, {
                               status: !e.status,
                             })
                             .catch((error: any) => console.log(error))
@@ -62,7 +62,9 @@ function Todo({ list, refetch }: TodoTableProps) {
                       status={TextButtonStatus.SECONDARY}
                       action={() => {
                         try {
-                          axios.delete(api + "/" + e._id).then(refetch);
+                          axios
+                            .delete(`${api}/delete-single/${e._id}`)
+                            .then(refetch);
                         } catch (error) {
                           console.log(error);
                         }
@@ -99,7 +101,7 @@ function Todo({ list, refetch }: TodoTableProps) {
                   if (item.status) return;
                   try {
                     axios
-                      .put(api + "/" + item?._id, {
+                      .put(`${api}/${item?._id}`, {
                         status: !item?.status,
                       })
                       .catch((error: any) => console.log(error))
@@ -116,7 +118,9 @@ function Todo({ list, refetch }: TodoTableProps) {
                 status={TextButtonStatus.SECONDARY}
                 action={() => {
                   try {
-                    axios.delete(api + "/" + item?._id).then(refetch);
+                    axios
+                      .delete(`${api}/delete-single/${item?._id}`)
+                      .then(refetch);
                   } catch (error) {
                     console.log(error);
                   }

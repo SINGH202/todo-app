@@ -35,19 +35,12 @@ export default function Home() {
       });
   };
 
-  const removeComplete = (e: any) => {
-    if (e.status == true) {
-      axios.delete(api + "/" + e._id);
-    }
-  };
-
   const deleteAll = () => {
-    // setList(list.filter(removeComplete));
-    // try {
-    //   axios.delete(api).then(getData);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      axios.delete(`${api}/delete-complete`).then(getData);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     getData();
