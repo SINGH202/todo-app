@@ -5,15 +5,16 @@ const axios = require("axios");
 
 function Todo({ list, refetch }: TodoTableProps) {
   let n = 1;
-  console.log(list);
   const api = `https://e-commerce-backend-20lo.onrender.com/api/todo`;
 
   return (
     <>
-      <div className="hidden md:flex">
-        <table id="table todo-card">
-          <thead>
-            <tr>
+      <div className="hidden md:flex w-full">
+        <table
+          id="table todo-card"
+          className="w-full styled-table font-medium text-black">
+          <thead className="">
+            <tr className="w-full">
               <td>Index</td>
               <td>Title</td>
               <td>Time</td>
@@ -126,9 +127,9 @@ export type TodoCardContentProps = {
 
 export const TodoCardContent = ({ label, content }: TodoCardContentProps) => {
   return (
-    <div className="flex flex-col gap-0">
+    <div className="flex flex-col gap-0 text-white">
       <span className="text-sm">{label}</span>
-      <span className="text-base  uppercase">{content}</span>
+      <span className="text-base  uppercase font-semibold">{content}</span>
     </div>
   );
 };

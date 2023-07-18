@@ -39,37 +39,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-table,
-tr,
-td {
-  margin: 10px auto;
-  border: 1px solid black;
-}
-
-td {
-  margin: 10px;
-  padding: 5px;
-  min-width: 100px;
-}
-
 button {
   padding: 10px;
   font-size: 14px;
   font-weight: 600;
 }
-/* 
-td button {
-  max-width: 100px;
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 7px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 0%;
-} */
-tr {
-  min-width: 600px;
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+  color: #009879;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
 }

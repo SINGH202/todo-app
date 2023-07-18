@@ -11,8 +11,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 164, 164, 255;
-    --background-end-rgb: 22, 124, 124;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
   }
 }
 
@@ -44,6 +44,7 @@ body {
     rgb(var(--background-start-rgb));
   border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(20px);
+  color: white;
 }

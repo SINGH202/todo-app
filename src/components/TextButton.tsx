@@ -7,8 +7,8 @@ export const statusClasses = ({
 }): string => {
   status = status;
   const classes: { [key in TextButtonStatus]: string } = {
-    PRIMARY: `rounded-lg w-full py-1.5 bg-[#f0ad4e] cursor-pointer transition-all duration-1000 ease-in-out`,
-    SECONDARY: `rounded-lg w-full py-1.5 bg-[#b73c33] cursor-pointer transition-all duration-1000 ease-in-out`,
+    PRIMARY: `rounded-lg w-full py-1.5 bg-[#f0ad4e] cursor-pointer transition-all duration-1000 ease-in-out text-white`,
+    SECONDARY: `rounded-lg w-full py-1.5 bg-[#b73c33] cursor-pointer transition-all duration-1000 ease-in-out  text-white`,
   };
   return classes[status];
 };

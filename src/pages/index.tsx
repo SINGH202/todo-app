@@ -7,6 +7,7 @@ import { AddTodoPopup } from "@/components/AddTodoPopup";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { TextButton } from "@/components/TextButton";
 import { TextButtonStatus } from "../../types";
+import { AnimatedBackground } from "@/components/AnimateBackground";
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -54,9 +55,10 @@ export default function Home() {
   }, []);
   return (
     <main
-      className={`flex min-h-screen flex-col px-5 lg:px-10 items-center ${inter.className}`}>
-      <div className="flex justify-between gap-2 items-center w-full py-4">
-        <span className="text-xl font-serif">Todo App</span>
+      className={`flex min-h-screen flex-col px-5 lg:px-10 items-center ${inter.className} relative`}>
+      <AnimatedBackground />
+      <div className="flex justify-between gap-5 items-center w-full py-4 z-10">
+        <p className="text-xl font-serif">Todo App</p>
         <div className="flex flex-wrap justify-end gap-3 items-center">
           <div>
             <TextButton
@@ -76,20 +78,22 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {isLoading ? (
-        <Player
-          autoplay
-          loop
-          src={"./assets/animation_lk6lewjs.json"}
-          style={{ height: "300px", width: "300px" }}>
-          <Controls
-            visible={false}
-            buttons={["play", "repeat", "frame", "debug"]}
-          />
-        </Player>
-      ) : (
-        <Todo list={list} refetch={getData} />
-      )}
+      <div className="w-full z-10">
+        {isLoading ? (
+          <Player
+            autoplay
+            loop
+            src={"./assets/animation_lk6lewjs.json"}
+            style={{ height: "300px", width: "300px" }}>
+            <Controls
+              visible={false}
+              buttons={["play", "repeat", "frame", "debug"]}
+            />
+          </Player>
+        ) : (
+          <Todo list={list} refetch={getData} />
+        )}
+      </div>
       <PopupEncloser
         show={isPopupOpen}
         close={() => {
