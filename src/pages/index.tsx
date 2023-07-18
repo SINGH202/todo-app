@@ -83,8 +83,8 @@ export default function Home() {
           <Player
             autoplay
             loop
-            src={"./assets/animation_lk6lewjs.json"}
-            style={{ height: "300px", width: "300px" }}>
+            src={"./assets/loading-animation.json"}
+            style={{ height: "600px", width: "300px" }}>
             <Controls
               visible={false}
               buttons={["play", "repeat", "frame", "debug"]}
