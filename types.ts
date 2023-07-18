@@ -1,6 +1,7 @@
 export enum TextButtonStatus {
   PRIMARY = "PRIMARY",
   SECONDARY = "SECONDARY",
+  SUCCESS = "SUCCESS",
 }
 
 export type TodoProps = {

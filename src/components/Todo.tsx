@@ -32,12 +32,17 @@ function Todo({ list, refetch }: TodoTableProps) {
                   <td>{e.title}</td>
                   <td>{e.time}</td>
                   <td>{e.date}</td>
-                  <td>{e.status ? "Complete" : "Incomplete"}</td>
+                  <td>{e.status ? "Complete" : "Pending"}</td>
                   <td>
                     <TextButton
-                      label={"Change"}
-                      status={TextButtonStatus.PRIMARY}
+                      label={e.status ? "Done" : "Move to done"}
+                      status={
+                        e.status
+                          ? TextButtonStatus.SUCCESS
+                          : TextButtonStatus.PRIMARY
+                      }
                       action={() => {
+                        if (e.status) return;
                         try {
                           axios
                             .put(api + "/" + e._id, {
@@ -80,13 +85,18 @@ function Todo({ list, refetch }: TodoTableProps) {
             <TodoCardContent label={"Time"} content={item?.time} />
             <TodoCardContent
               label={"Status"}
-              content={item?.status ? "Complete" : "Incomplete"}
+              content={item?.status ? "Complete" : "Pending"}
             />
             <div className=" mr-2 sm:w-1/3">
               <TextButton
-                label={"Change"}
-                status={TextButtonStatus.PRIMARY}
+                label={item.status ? "Done" : "Move to done"}
+                status={
+                  item?.status
+                    ? TextButtonStatus.SUCCESS
+                    : TextButtonStatus.PRIMARY
+                }
                 action={() => {
+                  if (item.status) return;
                   try {
                     axios
                       .put(api + "/" + item?._id, {
