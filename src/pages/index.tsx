@@ -8,6 +8,7 @@ import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { TextButton } from "@/components/TextButton";
 import { TextButtonStatus } from "../../types";
 import { AnimatedBackground } from "@/components/AnimateBackground";
+import Image from "next/image";
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -83,6 +84,15 @@ export default function Home() {
               buttons={["play", "repeat", "frame", "debug"]}
             />
           </Player>
+        ) : list.length === 0 ? (
+          <div className="flex justify-center items-center w-full h-screen">
+            <Image
+              width={500}
+              height={500}
+              src="/assets/no-data-found.svg"
+              alt=""
+            />
+          </div>
         ) : (
           <Todo list={list} refetch={getData} />
         )}
