@@ -10,7 +10,7 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
     time: "",
     status: false,
   });
-  const api = "https://e-commerce-backend-20lo.onrender.com/api/todo";
+  const api = "/todo";
 
   const postData = () => {
     if (
@@ -33,7 +33,7 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
     }
   };
   return (
-    <div className="flex flex-col items-center p-10 gap-5 add-todo-popup text-black">
+    <div className="flex flex-col items-center p-10 gap-5 add-todo-popup opacity-90 text-black">
       <input
         className="p-1.5 text-black border border-gray-400 rounded-lg px-2 w-full"
         placeholder="Title"

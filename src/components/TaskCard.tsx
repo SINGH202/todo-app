@@ -4,7 +4,7 @@ import { TextButton } from "./TextButton";
 import { TodoCardContent } from "./TodoCardContent";
 
 export const TodoCard = ({ task, refetch }: TaskProps) => {
-  const api = `https://e-commerce-backend-20lo.onrender.com/api/todo`;
+  const api = `/todo`;
   const { time, title, date, status, _id } = task;
   return (
     <div className="grid grid-cols-2 gap-y-3 p-4 rounded-xl todo-card">

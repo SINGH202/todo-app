@@ -8,6 +8,8 @@ import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { AnimatedBackground } from "@/components/AnimateBackground";
 import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
+import { LoginForm } from "@/components/LoginForm";
+import { endPoint } from "../../app.config";
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -20,7 +22,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState([]);
 
-  const api = `https://e-commerce-backend-20lo.onrender.com/api/todo`;
+  const api = `${endPoint}/todo`;
 
   const getData = () => {
     fetch(`${api}`)
@@ -56,6 +58,7 @@ export default function Home() {
         }}
         deleteAction={deleteAll}
       />
+      {/* <LoginForm /> */}
       <div className="w-full z-10">
         {isLoading ? (
           <Player

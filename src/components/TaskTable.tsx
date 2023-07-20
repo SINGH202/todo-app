@@ -2,10 +2,11 @@ import axios from "axios";
 import { list } from "postcss";
 import { TaskTableProps, TextButtonStatus } from "../../types";
 import { TextButton } from "./TextButton";
+import { endPoint } from "../../app.config";
 
 export const TaskTable = ({ list, refetch }: TaskTableProps) => {
   let n = 1;
-  const api = `https://e-commerce-backend-20lo.onrender.com/api/todo`;
+  const api = `${endPoint}/todo`;
 
   return (
     <div className="hidden md:flex w-full">

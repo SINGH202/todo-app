@@ -1,7 +1,10 @@
+import { ReactNode } from "react";
+
 export enum TextButtonStatus {
   PRIMARY = "PRIMARY",
   SECONDARY = "SECONDARY",
   SUCCESS = "SUCCESS",
+  PLAIN = "PLAIN",
 }
 
 export type TodoProps = {
@@ -51,4 +54,24 @@ export type PopupEncloserProps = {
 export type TodoCardContentProps = {
   label: string;
   content: string;
+};
+
+export type InputWithLabelProps = {
+  label: string;
+  placeholder: string;
+  description?: string;
+  isInvalid?: boolean;
+  errorText?: string;
+  isDisabled?: boolean;
+  type: "text" | "number" | "date" | "password" | "email";
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: any;
+  handleKeyDown?: (value: any) => void;
+  actionBtn?: ReactNode;
+};
+
+export type UserFormProps = {
+  email: string;
+  password: string;
+  confirmPassword?: string;
 };

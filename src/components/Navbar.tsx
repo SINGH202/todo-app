@@ -1,10 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import { NavbarProps, TextButtonStatus } from "../../types";
 import { TextButton } from "./TextButton";
 
 export const Navbar = ({ showPopupAction, deleteAction }: NavbarProps) => {
   return (
     <div className="flex justify-between gap-5 items-center w-full py-4 z-10">
-      <p className="text-2xl font-serif">Todo App</p>
+      <img src="/assets/todo-logo.png" alt="" className="rounded-lg h-10 " />
       <div className="flex flex-wrap justify-end gap-3 items-center">
         <div>
           <TextButton
