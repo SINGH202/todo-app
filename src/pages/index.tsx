@@ -1,14 +1,13 @@
-import { Inter, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 import Todo from "@/components/Todo";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { PopupEncloser } from "@/components/PopupEncloser";
 import { AddTodoPopup } from "@/components/AddTodoPopup";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
-import { TextButton } from "@/components/TextButton";
-import { TextButtonStatus } from "../../types";
 import { AnimatedBackground } from "@/components/AnimateBackground";
 import Image from "next/image";
+import { Navbar } from "@/components/Navbar";
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -51,27 +50,12 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col px-5 lg:px-10 items-center ${inter.className} relative`}>
       <AnimatedBackground />
-      <div className="flex justify-between gap-5 items-center w-full py-4 z-10">
-        <p className="text-xl font-serif">Todo App</p>
-        <div className="flex flex-wrap justify-end gap-3 items-center">
-          <div>
-            <TextButton
-              label={"Add task"}
-              status={TextButtonStatus.PRIMARY}
-              action={() => {
-                setIsPopupOpen(true);
-              }}
-            />
-          </div>
-          <div>
-            <TextButton
-              label={"Delete complete"}
-              status={TextButtonStatus.SECONDARY}
-              action={deleteAll}
-            />
-          </div>
-        </div>
-      </div>
+      <Navbar
+        showPopupAction={() => {
+          setIsPopupOpen(true);
+        }}
+        deleteAction={deleteAll}
+      />
       <div className="w-full z-10">
         {isLoading ? (
           <Player

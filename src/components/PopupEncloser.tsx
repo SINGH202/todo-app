@@ -1,8 +1,5 @@
-export type PopupEncloserProps = {
-  children: any;
-  show: boolean;
-  close: (Option: boolean) => void;
-};
+import { PopupEncloserProps } from "../../types";
+
 export const PopupEncloser = ({
   children,
   show,
