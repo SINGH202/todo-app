@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { AddTodoFormPopup, TextButtonStatus, TodoProps } from "../../types";
 import { TextButton } from "./TextButton";
+import { endPoint } from "../../app.config";
+import { getJwtUser } from "../../services/user.services";
 
 export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
   const [formData, setFormData] = useState<TodoProps>({
@@ -10,26 +12,31 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
     time: "",
     status: false,
   });
-  const api = "/todo";
+  const api = `${endPoint}/todo`;
 
-  const postData = () => {
+  const postData = async () => {
     if (
       formData?.title !== "" &&
       formData?.date !== "" &&
       formData?.time !== ""
     ) {
       // console.log(data)
+      const userInfo = await getJwtUser();
+      const header = userInfo && userInfo.jwt;
       axios({
         method: "post",
         url: api,
-        data: formData,
+        data: { ...formData, user: "64baf551b322162351c9684a" },
+        headers: {
+          Authorization: `Bearer ${header}`,
+        },
       }).then((res: any) => {
         close();
         // console.log(res.data)
       });
       // .then(getData);
     } else {
-      alert("Fill all feilds");
+      alert("Fill all fields");
     }
   };
   return (

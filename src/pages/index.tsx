@@ -10,6 +10,7 @@ import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
 import { LoginForm } from "@/components/LoginForm";
 import { endPoint } from "../../app.config";
+import { useAuthContext } from "@/context/AuthContext";
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -21,7 +22,7 @@ export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState([]);
-
+  const { isAuthenticated } = useAuthContext();
   const api = `${endPoint}/todo`;
 
   const getData = () => {
@@ -58,32 +59,35 @@ export default function Home() {
         }}
         deleteAction={deleteAll}
       />
-      {/* <LoginForm /> */}
-      <div className="w-full z-10">
-        {isLoading ? (
-          <Player
-            autoplay
-            loop
-            src={"./assets/loading-animation.json"}
-            style={{ height: "600px", width: "300px" }}>
-            <Controls
-              visible={false}
-              buttons={["play", "repeat", "frame", "debug"]}
-            />
-          </Player>
-        ) : list.length === 0 ? (
-          <div className="flex justify-center items-center w-full h-screen">
-            <Image
-              width={500}
-              height={500}
-              src="/assets/no-data-found.svg"
-              alt=""
-            />
-          </div>
-        ) : (
-          <Todo list={list} refetch={getData} />
-        )}
-      </div>
+      {isAuthenticated ? (
+        <div className="w-full z-10">
+          {isLoading ? (
+            <Player
+              autoplay
+              loop
+              src={"./assets/loading-animation.json"}
+              style={{ height: "600px", width: "300px" }}>
+              <Controls
+                visible={false}
+                buttons={["play", "repeat", "frame", "debug"]}
+              />
+            </Player>
+          ) : list.length === 0 ? (
+            <div className="flex justify-center items-center w-full h-screen">
+              <Image
+                width={500}
+                height={500}
+                src="/assets/no-data-found.svg"
+                alt=""
+              />
+            </div>
+          ) : (
+            <Todo list={list} refetch={getData} />
+          )}
+        </div>
+      ) : (
+        <LoginForm />
+      )}
       <PopupEncloser
         show={isPopupOpen}
         close={() => {

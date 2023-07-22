@@ -2,13 +2,50 @@ import { useState } from "react";
 import { InputWithLabel } from "./InputWithLabel";
 import { UserFormProps, TextButtonStatus } from "../../types";
 import { TextButton } from "./TextButton";
+import { endPoint } from "../../app.config";
+import axios from "axios";
+import { setJwtToLocal } from "../../services/user.services";
+import { useAuthContext } from "@/context/AuthContext";
 export const LoginForm = () => {
+  const { setIsAuthenticated } = useAuthContext();
   const [userFormData, setUserFormData] = useState<UserFormProps>({
     email: "",
     password: "",
     confirmPassword: "",
   });
   const [isNewUser, setIsNewUser] = useState(false);
+  const authApi = `${endPoint}/auth`;
+  const loginApi = `${endPoint}/login`;
+  const addUser = () => {
+    if (
+      !userFormData?.email ||
+      !userFormData?.password ||
+      !userFormData?.confirmPassword ||
+      userFormData?.password !== userFormData?.confirmPassword
+    ) {
+      return;
+    }
+    axios({
+      method: "post",
+      url: `${endPoint}/auth/register`,
+      data: { email: userFormData?.email, password: userFormData?.password },
+    }).then((res: any) => {
+      loginUser();
+    });
+  };
+  const loginUser = () => {
+    if (!userFormData?.email || !userFormData?.password) {
+      return;
+    }
+    axios({
+      method: "post",
+      url: `${endPoint}/auth/login`,
+      data: { email: userFormData?.email, password: userFormData?.password },
+    }).then((res: any) => {
+      setJwtToLocal(res?.data);
+      setIsAuthenticated(true);
+    });
+  };
   return (
     <div className="flex flex-col gap-5 items-center justify-center w-full z-10 py-10 max-w-[620px]">
       <span className="w-full text-3xl font-semibold font-serif">
@@ -38,9 +75,12 @@ export const LoginForm = () => {
           placeholder={"*******"}
           type={"password"}
           onChange={(e: any) => {
-            setUserFormData({ ...userFormData, password: e.target.value });
+            setUserFormData({
+              ...userFormData,
+              confirmPassword: e.target.value,
+            });
           }}
-          value={userFormData?.password}
+          value={userFormData?.confirmPassword}
         />
       )}
       <div className="flex items-center justify-between w-full">
@@ -56,7 +96,7 @@ export const LoginForm = () => {
         <div className="w-28">
           <TextButton
             label={isNewUser ? "Create user" : "Login"}
-            action={isNewUser ? () => {} : () => {}}
+            action={isNewUser ? addUser : loginUser}
           />
         </div>
       </div>
