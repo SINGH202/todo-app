@@ -11,6 +11,8 @@ import { Navbar } from "@/components/Navbar";
 import { LoginForm } from "@/components/LoginForm";
 import { endPoint } from "../../app.config";
 import { useAuthContext } from "@/context/AuthContext";
+import { getJwtUser } from "../../services/user.services";
+import { TodoProps } from "../../types";
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -25,18 +27,31 @@ export default function Home() {
   const { isAuthenticated } = useAuthContext();
   const api = `${endPoint}/todo`;
 
-  const getData = () => {
+  const getData = async () => {
+    const userInfo = await getJwtUser();
+    const header = userInfo && userInfo.accessToken;
     setIsLoading(true);
-    fetch(`${api}`)
-      .then((d) => d.json())
-      .then((res) => {
-        setList(res);
+    axios({
+      method: "get",
+      url: `${api}/find/${userInfo?._id}`,
+      headers: {
+        Authorization: `Bearer ${header}`,
+      },
+    })
+      .then((res: any) => {
+        setList(res.data);
         setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
       });
+    // fetch(`${api}`)
+    //   .then((d) => d.json())
+    //   .then((res) => {
+    //     setList(res);
+    //     setIsLoading(false);
+    //   })
   };
 
   const deleteAll = () => {
@@ -47,9 +62,10 @@ export default function Home() {
     }
   };
   useEffect(() => {
+    if (!isAuthenticated) return;
     getData();
     setIsLoading(true);
-  }, []);
+  }, [isAuthenticated]);
   return (
     <main
       className={`flex min-h-screen flex-col px-5 lg:px-10 items-center ${inter.className} relative`}>

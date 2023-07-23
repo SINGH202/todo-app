@@ -20,21 +20,18 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
       formData?.date !== "" &&
       formData?.time !== ""
     ) {
-      // console.log(data)
       const userInfo = await getJwtUser();
-      const header = userInfo && userInfo.jwt;
+      const header = userInfo && userInfo.accessToken;
       axios({
         method: "post",
         url: api,
-        data: { ...formData, user: "64baf551b322162351c9684a" },
+        data: { ...formData, user: userInfo?._id },
         headers: {
           Authorization: `Bearer ${header}`,
         },
       }).then((res: any) => {
         close();
-        // console.log(res.data)
       });
-      // .then(getData);
     } else {
       alert("Fill all fields");
     }

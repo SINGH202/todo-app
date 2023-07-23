@@ -56,7 +56,7 @@ export const LoginForm = () => {
         <Player
           autoplay
           loop
-          src={"./assets/loading-animation-2.json"}
+          src={"./assets/loading-animation.json"}
           style={{ height: "600px", width: "300px" }}>
           <Controls
             visible={false}
