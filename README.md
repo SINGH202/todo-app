@@ -1,4 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Todo App - Next.js, Tailwind CSS, TypeScript
+
+This is a Todo App built with Next.js, Tailwind CSS, and TypeScript. The application allows users to sign up, log in, add new tasks, update individual tasks, delete individual tasks, and delete completed tasks.
+
+## Demo
+You can see a live demo of the application [here](react-todo-singh202.netlify.app/).
+
+## Features
+- User Authentication
+ - Sign Up: Users can sign up for a new account.
+ - Log In: Existing users can log in to access their tasks.
+- Task Management
+- Add New Task: Users can add new tasks to their list.
+- Update Task: Users can edit and update individual tasks.
+- Delete Task: Users can delete individual tasks from the list.
+- Delete Completed Tasks: Users can remove all completed tasks at once.
 
 ## Getting Started
 
