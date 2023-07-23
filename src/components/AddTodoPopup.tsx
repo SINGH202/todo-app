@@ -29,9 +29,13 @@ export const AddTodoPopup = ({ close }: AddTodoFormPopup) => {
         headers: {
           Authorization: `Bearer ${header}`,
         },
-      }).then((res: any) => {
-        close();
-      });
+      })
+        .then((res: any) => {
+          close();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       alert("Fill all fields");
     }

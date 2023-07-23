@@ -30,10 +30,15 @@ export const LoginForm = () => {
       method: "post",
       url: `${endPoint}/auth/register`,
       data: { email: userFormData?.email, password: userFormData?.password },
-    }).then((res: any) => {
-      setIsLoading(false);
-      loginUser();
-    });
+    })
+      .then((res: any) => {
+        setIsLoading(false);
+        loginUser();
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   };
   const loginUser = () => {
     if (!userFormData?.email || !userFormData?.password) {
@@ -44,11 +49,16 @@ export const LoginForm = () => {
       method: "post",
       url: `${endPoint}/auth/login`,
       data: { email: userFormData?.email, password: userFormData?.password },
-    }).then((res: any) => {
-      setIsLoading(false);
-      setJwtToLocal(res?.data);
-      setIsAuthenticated(true);
-    });
+    })
+      .then((res: any) => {
+        setIsLoading(false);
+        setJwtToLocal(res?.data);
+        setIsAuthenticated(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   };
   return (
     <div className="flex flex-col gap-5 items-center justify-center w-full z-10 py-10 max-w-[620px]">
