@@ -26,6 +26,7 @@ export default function Home() {
   const api = `${endPoint}/todo`;
 
   const getData = () => {
+    setIsLoading(true);
     fetch(`${api}`)
       .then((d) => d.json())
       .then((res) => {
