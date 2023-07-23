@@ -4,6 +4,7 @@ export enum TextButtonStatus {
   PRIMARY = "PRIMARY",
   SECONDARY = "SECONDARY",
   SUCCESS = "SUCCESS",
+  SECONDARY_PLAIN = "SECONDARY_PLAIN",
   PLAIN = "PLAIN",
 }
 

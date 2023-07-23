@@ -12,7 +12,7 @@ import { LoginForm } from "@/components/LoginForm";
 import { endPoint } from "../../app.config";
 import { useAuthContext } from "@/context/AuthContext";
 import { getJwtUser } from "../../services/user.services";
-import { TodoProps } from "../../types";
+
 
 const inter = Roboto({
   weight: ["400", "700"],
@@ -46,12 +46,6 @@ export default function Home() {
         console.log(err);
         setIsLoading(false);
       });
-    // fetch(`${api}`)
-    //   .then((d) => d.json())
-    //   .then((res) => {
-    //     setList(res);
-    //     setIsLoading(false);
-    //   })
   };
 
   const deleteAll = () => {

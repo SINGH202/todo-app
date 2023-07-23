@@ -9,6 +9,6 @@ export const setJwtToLocal = (user: any) => {
   localStorage.setItem("currentTodoUser", JSON.stringify(user));
   return user;
 };
-export const signOut = () => {
+export const logout = () => {
   localStorage.removeItem("currentTodoUser");
 };
