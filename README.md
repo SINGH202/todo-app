@@ -3,7 +3,7 @@
 This is a Todo App built with Next.js, Tailwind CSS, and TypeScript. The application allows users to sign up, log in, add new tasks, update individual tasks, delete individual tasks, and delete completed tasks.
 
 ## Demo
-You can see a live demo of the application [here](react-todo-singh202.netlify.app/).
+You can see a live demo of the application [here](https://www.react-todo-singh202.netlify.app/).
 
 ## Features
 - User Authentication
